@@ -10,11 +10,12 @@ class Cell:
         self.has_right_wall = True
         self.has_bottom_wall = True
         self.has_top_wall = True
-        self._x1 = None
-        self._y1 = None
-        self._x2 = None
-        self._y2 = None
+        self._x1 = -1
+        self._y1 = -1
+        self._x2 = -1
+        self._y2 = -1
         self._win = win
+        self.visited = False
 
     def draw(self, x1, y1, x2, y2):
         self._x1 = x1
@@ -36,12 +37,20 @@ class Cell:
         
             if self.has_top_wall:
                 self._win.draw_line(line_top, "blue")
+            else:
+                self._win.draw_line(line_top, "white")
             if self.has_bottom_wall:
                 self._win.draw_line(line_bottom, "blue")
+            else:
+                self._win.draw_line(line_bottom, "white")
             if self.has_left_wall:
                 self._win.draw_line(line_left, "blue")
+            else:
+                self._win.draw_line(line_left, "white")
             if self.has_right_wall:
                 self._win.draw_line(line_right, "blue")
+            else:
+                self._win.draw_line(line_right, "white")
 
     def draw_move(self, to_cell, undo=False):
         self._start_x = (self._x1 + self._x2) / 2
